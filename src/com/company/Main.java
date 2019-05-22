@@ -65,7 +65,7 @@ public class Main {
                 jobs.get(i).getPriorites().set(workStations.get(j).getIndex(),j);
             }
         }
-        System.out.println("fase 1 :\n");
+        System.out.println("faze 1 :\n");
         for (int i = 0; i < n; i++) {
             System.out.println(jobs.get(i).info());
         }
@@ -78,17 +78,24 @@ public class Main {
             cur.getPos().set(index,Math.max(cur.getAvailableTime(),pre.getPos().get(index)+pre.getWorkStationTimeSpend().get(index)));
             for (int j=1;j<m;j++){
                 index = cur.getPriorites().indexOf(j);
+                int preIndex = cur.getPriorites().indexOf(j-1);
                 cur.getPos().set(index,Math.max(cur.getAvailableTime(),Math.max(pre.getPos().get(index)+pre.getWorkStationTimeSpend().get(index),
-                        jobs.get(j).getPos().get(index-1)+jobs.get(j).getWorkStationTimeSpend().get(index-1))));
+                        jobs.get(i).getPos().get(preIndex)+jobs.get(i).getWorkStationTimeSpend().get(preIndex))));
             }
         }
 
 
-        System.out.println("fase 2 :\n");
+        System.out.println("faze 2 :\n");
         for (int i = 0; i < n; i++) {
             System.out.println(jobs.get(i).info());
         }
-
+        long des=0;
+        for (int i=0;i<m;i++){
+            int temp = jobs.get(n-1).getPos().get(jobs.get(n-1).getPriorites().indexOf(i))+jobs.get(n-1).getWorkStationTimeSpend().get(jobs.get(n-1).getPriorites().indexOf(i));
+            if(temp > des)
+                des = temp;
+        }
+        System.out.println(des);
 
     }
 }
