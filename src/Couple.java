@@ -10,7 +10,10 @@ public class Couple {
         this.end = timeSpend+start;
         this.jobPlaceInQueue = jobPlace;//shomare job_number of job
     }
-
+    public void shif(){//when we want shift couple in timeline
+        start++;
+        end++;
+    }
     public void setStart(int start) {
         this.start = start;
     }
@@ -32,5 +35,11 @@ public class Couple {
 
     public int getjobPlaceInQueue() {
         return jobPlaceInQueue;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+
     }
 }

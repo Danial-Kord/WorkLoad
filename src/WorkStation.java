@@ -18,4 +18,26 @@ public class WorkStation {
     public int getIndex() {
         return index;
     }
+
+    public void sortTimeLine()//sort array list_with start time
+    {
+        Couple temp;
+        for(int i=0;i<timeLine.size();i++){
+            for(int j=0;j<timeLine.size()-i-1;j++){
+                if(timeLine.get(j).getStart()>timeLine.get(j+1).getStart()){
+                    temp=timeLine.get(j);
+                    timeLine.set(j,timeLine.get(j+1));
+                    timeLine.set(j+1,temp);
+                }
+            }
+        }
+
+    }
+    public void showPipelinStart(){
+        for(int i=0;i<timeLine.size();i++){
+            System.out.print(timeLine.get(i).getStart()+" ");
+        }
+        System.out.println("");
+
+    }
 }

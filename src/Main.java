@@ -71,7 +71,7 @@ public class Main {
                 jobs.get(i).getPriorites().set(workStations.get(j).getIndex(), j);
             }
         }
-        System.out.println("faze 1 :\n");
+        System.out.println("phase 1 :\n");
         for (int i = 0; i < n; i++) {
             System.out.println(jobs.get(i).info());
         }
@@ -91,7 +91,7 @@ public class Main {
         }
 
 
-        System.out.println("faze 2 :\n");
+        System.out.println("phase 2 :\n");
         for (int i = 0; i < n; i++) {
             System.out.println(jobs.get(i).info());
         }
@@ -104,6 +104,9 @@ public class Main {
         System.out.println(des);
 
 
+        System.out.println("phase 3");
+
+
         //in this section we want to creat time line to show what we have in workstation
         for (int j = 0; j < n; j++) {
             for (int k = 0; k < m; k++) {
@@ -111,9 +114,104 @@ public class Main {
                 workStations.get(k).timeLine.add(couple);
             }
         }
+
+        for (WorkStation sourece : workStations) { //now couples sort in timeline
+            sourece.sortTimeLine();
+        }
+
         System.out.println("___");
         System.out.println("___");
         printerTable(workStations);
+
+        //bubble remover
+        for (int i = 0; i < m; i++) {//all workstation
+            int curentPivot = workStations.get(i).timeLine.get(0).getEnd();
+            int curentStage = 0;
+            while (/*curentPivot <= workStations.get(i).timeLine.get(workStations.get(i).timeLine.size()-1).getEnd()&&*/ curentStage<m) {//finding null spaces
+                Couple nullSpace = new Couple(workStations.get(i).timeLine.get(curentStage).getEnd(), workStations.get(i).timeLine.get(curentStage + 1).getStart()-workStations.get(i).timeLine.get(curentStage).getEnd(), -1);
+                if(nullSpace.getEnd()-nullSpace.getStart()==0){
+                    curentStage++;
+                     continue;
+                }
+                for (int v = curentStage+1; v < workStations.get(i).timeLine.size(); v++) {//check who is appropriate for this null space
+                    Couple target = workStations.get(i).timeLine.get(v);
+
+                    if (target.getEnd() - target.getStart() < nullSpace.getEnd() - nullSpace.getStart()) {
+
+                        //agar az tahesh zad biron
+                        if (jobs.get(target.getjobPlaceInQueue()).getAvailableTime() + target.getEnd() - target.getStart() > nullSpace.getEnd()) {
+                            continue;//if you break end of null space
+                        }
+                        //what we want to move
+                        boolean isDrawable = true;
+                        Couple map = new Couple(nullSpace.getStart(), target.getEnd() - target.getStart(), target.getjobPlaceInQueue());
+                        while (map.getEnd() <= nullSpace.getEnd()) {//set the position of block for new condition
+                            for (int w = 0; w < m; w++) {
+                                if (w == i) {
+                                    continue;
+                                }
+                                //brothers of what we want to move
+                                Couple temp = new Couple(jobs.get(target.getjobPlaceInQueue()).getPos().get(w), jobs.get(target.getjobPlaceInQueue()).getWorkStationTimeSpend().get(w), target.getjobPlaceInQueue());
+                                if (interact(map, temp)) {
+                                    isDrawable = false;
+                                    break;
+                                }
+//                            while (map.getEnd()<=nullSpace.getEnd()){
+//                                if(interact(map,temp))
+//                                map.shif();
+//                            }
+
+                            }
+                            if (isDrawable == true) {
+                                System.out.println("//");
+                                jobs.get(target.getjobPlaceInQueue()).getPos().set(i, map.getStart());
+
+                                System.out.println(" "+i+ " "+target.getjobPlaceInQueue());
+
+                                System.out.print(target.getStart()+" ");
+                                System.out.print(target.getEnd()+" ");
+
+
+                                System.out.print(map.getStart()+" ");
+                                System.out.println(map.getEnd()+" ");
+
+
+
+                                workStations.get(i).timeLine.remove(target);
+                                if(curentStage==workStations.get(i).timeLine.size()){
+                                    workStations.get(i).timeLine.add(map);
+                                }
+                                else {
+                                    workStations.get(i).timeLine.add(curentStage + 1, map);
+                                }
+//                                System.out.println(workStations.get(i).timeLine.get(curentStage+1).getStart());
+                                curentPivot = map.getEnd();
+                                curentStage++;
+                                break;
+                            }
+                            map.shif();
+                        }
+                        if (isDrawable == false) {
+                            curentPivot = nullSpace.getEnd();
+                            curentStage++;
+                        }
+                        if(isDrawable== true){
+                            break;
+                        }
+
+                    }
+                }
+//                curentStage++;
+//                curentPivot = workStations.get(i).timeLine.get(curentStage + 1).getEnd();
+            }
+
+        }
+
+        //this section must be done in the end of project
+        System.out.println("___");
+        System.out.println("___");
+        printerTable(workStations);
+//        System.out.println(workStations.get(2).timeLine.get(m).getEnd());
 
 
     }
@@ -148,5 +246,20 @@ public class Main {
             System.out.println("LL");
 
         }
+    }
+
+    public static boolean interact(Couple c1, Couple c2) {//check collision of two couple
+//        boolean result=false;
+        if (c1.getStart() > c2.getStart() && c1.getStart() < c2.getEnd()) {
+            return true;
+        }
+        if (c1.getEnd() < c2.getEnd() && c1.getEnd() > c2.getStart()) {
+            return true;
+        }
+        if (c1.getStart() < c1.getStart() && c1.getEnd() > c2.getEnd()) {
+            return true;
+        }
+        return false;
+
     }
 }
