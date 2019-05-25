@@ -127,9 +127,15 @@ public class Main {
         for (int p=0;p<n;p++) {
             for (int i = 0; i < m; i++) {//all workstation
                 int curentPivot = workStations.get(i).timeLine.get(0).getEnd();
-                int curentStage = 0;
+                int curentStage = -1;
                 while (/*curentPivot <= workStations.get(i).timeLine.get(workStations.get(i).timeLine.size()-1).getEnd()&&*/ curentStage < n - 1) {//finding null spaces
-                    Couple nullSpace = new Couple(workStations.get(i).timeLine.get(curentStage).getEnd(), workStations.get(i).timeLine.get(curentStage + 1).getStart() - workStations.get(i).timeLine.get(curentStage).getEnd(), -1);
+                    Couple nullSpace;
+                    if(curentStage!=-1) {
+                        nullSpace = new Couple(workStations.get(i).timeLine.get(curentStage).getEnd(), workStations.get(i).timeLine.get(curentStage + 1).getStart() - workStations.get(i).timeLine.get(curentStage).getEnd(), -1);
+                    }else {
+                        nullSpace= new Couple(0,workStations.get(i).timeLine.get(curentStage + 1).getStart(),-1);
+                    }
+
                     if (nullSpace.getEnd() - nullSpace.getStart() == 0) {
                         curentPivot = workStations.get(i).timeLine.get(curentStage + 1).getEnd();
                         curentStage++;
@@ -138,7 +144,7 @@ public class Main {
                     for (int v = curentStage + 1; v < n; v++) {//check who is appropriate for this null space
                         Couple target = workStations.get(i).timeLine.get(v);
 
-                        if (target.getEnd() - target.getStart() < nullSpace.getEnd() - nullSpace.getStart()) {
+                        if (target.getEnd() - target.getStart() <= nullSpace.getEnd() - nullSpace.getStart()) {
 
                             //agar az tahesh zad biron
                             if (jobs.get(target.getjobPlaceInQueue()).getAvailableTime() + target.getEnd() - target.getStart() > nullSpace.getEnd()) {
