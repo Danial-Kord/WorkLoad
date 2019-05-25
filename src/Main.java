@@ -79,20 +79,21 @@ public class Main {
             System.out.println(jobs.get(i).info());
         }
 
-        for (int i = 1; i < n; i++) {
-            Job cur = jobs.get(i);
-            Job pre = jobs.get(i - 1);
-
-            int index = cur.getPriorites().indexOf(0);
-            cur.getPos().set(index, Math.max(cur.getAvailableTime(), pre.getPos().get(index) + pre.getWorkStationTimeSpend().get(index)));
-            for (int j = 1; j < m; j++) {
-                index = cur.getPriorites().indexOf(j);
-                int preIndex = cur.getPriorites().indexOf(j - 1);
-                cur.getPos().set(index, Math.max(cur.getAvailableTime(), Math.max(pre.getPos().get(index) + pre.getWorkStationTimeSpend().get(index),
-                        jobs.get(i).getPos().get(preIndex) + jobs.get(i).getWorkStationTimeSpend().get(preIndex))));
-            }
-        }
-
+//        for (int i = 1; i < n; i++) {
+//            Job cur = jobs.get(i);
+//            Job pre = jobs.get(i - 1);
+//
+//            int index = cur.getPriorites().indexOf(0);
+//            cur.getPos().set(index, Math.max(cur.getAvailableTime(), pre.getPos().get(index) + pre.getWorkStationTimeSpend().get(index)));
+//            for (int j = 1; j < m; j++) {
+//                index = cur.getPriorites().indexOf(j);
+//                int preIndex = cur.getPriorites().indexOf(j - 1);
+//                cur.getPos().set(index, Math.max(cur.getAvailableTime(), Math.max(pre.getPos().get(index) + pre.getWorkStationTimeSpend().get(index),
+//                        jobs.get(i).getPos().get(preIndex) + jobs.get(i).getWorkStationTimeSpend().get(preIndex))));
+//            }
+//        }//TODO
+        FactorielMethod factorielMethod = new FactorielMethod(n,m,jobs);
+        jobs = factorielMethod.bestFactorielplacement();
 
         System.out.println("phase 2 :\n");
         for (int i = 0; i < n; i++) {
@@ -253,27 +254,27 @@ public class Main {
                 System.out.printf(""+ jobs.get(j).formalInfo());
             }
         }
-        System.out.println("enter output name");
-        String name = scanner.next();
-        Verification verification = new Verification();
-        verification.write("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt",des,jobs);
-
-
-
-//        Verification verification = new Verification();
-//        System.out.println("enter input name");
-//        String namein = scanner.next();
 //        System.out.println("enter output name");
 //        String name = scanner.next();
+//        Verification verification = new Verification();
 //        verification.write("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt",des,jobs);
-//
-//        try {
-//            verification = new Verification("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\inputs\\"+namein+".txt",
-//                    "D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt");
-//            System.out.println(verification.check());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
+
+
+        Verification verification = new Verification();
+        System.out.println("enter input name");
+        String namein = scanner.next();
+        System.out.println("enter output name");
+        String name = scanner.next();
+        verification.write("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt",des,jobs);
+
+        try {
+            verification = new Verification("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\inputs\\"+namein+".txt",
+                    "D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt");
+            System.out.println(verification.check());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
