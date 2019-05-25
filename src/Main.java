@@ -127,13 +127,15 @@ public class Main {
         for (int i = 0; i < m; i++) {//all workstation
             int curentPivot = workStations.get(i).timeLine.get(0).getEnd();
             int curentStage = 0;
-            while (/*curentPivot <= workStations.get(i).timeLine.get(workStations.get(i).timeLine.size()-1).getEnd()&&*/ curentStage<m) {//finding null spaces
+            while (/*curentPivot <= workStations.get(i).timeLine.get(workStations.get(i).timeLine.size()-1).getEnd()&&*/ curentStage<n) {//finding null spaces
                 Couple nullSpace = new Couple(workStations.get(i).timeLine.get(curentStage).getEnd(), workStations.get(i).timeLine.get(curentStage + 1).getStart()-workStations.get(i).timeLine.get(curentStage).getEnd(), -1);
                 if(nullSpace.getEnd()-nullSpace.getStart()==0){
+                    curentPivot=workStations.get(i).timeLine.get(curentStage+1).getEnd();
                     curentStage++;
                      continue;
                 }
-                for (int v = curentStage+1; v < workStations.get(i).timeLine.size(); v++) {//check who is appropriate for this null space
+                System.out.println("shir");
+                for (int v = curentStage+1; v < n; v++) {//check who is appropriate for this null space
                     Couple target = workStations.get(i).timeLine.get(v);
 
                     if (target.getEnd() - target.getStart() < nullSpace.getEnd() - nullSpace.getStart()) {
@@ -153,9 +155,11 @@ public class Main {
                                 //brothers of what we want to move
                                 Couple temp = new Couple(jobs.get(target.getjobPlaceInQueue()).getPos().get(w), jobs.get(target.getjobPlaceInQueue()).getWorkStationTimeSpend().get(w), target.getjobPlaceInQueue());
                                 if (interact(map, temp)) {
+                                    System.out.printf("tadakhol");
                                     isDrawable = false;
                                     break;
                                 }
+                                System.out.printf("search");
 //                            while (map.getEnd()<=nullSpace.getEnd()){
 //                                if(interact(map,temp))
 //                                map.shif();
@@ -190,6 +194,7 @@ public class Main {
                                 break;
                             }
                             map.shif();
+                            System.out.printf("\n"+ map.getStart());
                         }
                         if (isDrawable == false) {
                             curentPivot = nullSpace.getEnd();
@@ -198,7 +203,6 @@ public class Main {
                         if(isDrawable== true){
                             break;
                         }
-
                     }
                 }
 //                curentStage++;
@@ -256,7 +260,7 @@ public class Main {
         if (c1.getEnd() < c2.getEnd() && c1.getEnd() > c2.getStart()) {
             return true;
         }
-        if (c1.getStart() < c1.getStart() && c1.getEnd() > c2.getEnd()) {
+        if (c1.getStart() < c2.getStart() && c1.getEnd() > c2.getEnd()) {
             return true;
         }
         return false;
