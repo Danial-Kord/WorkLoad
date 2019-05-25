@@ -14,6 +14,19 @@ public class Job {
         workStationTimeSpend = new ArrayList<Integer>();
     }
 
+    public void setWorkStationTimeSpend(ArrayList<Integer> workStationTimeSpend) {
+        this.workStationTimeSpend = workStationTimeSpend;
+    }
+
+    public Job(int availableTime, ArrayList<Integer> workStationTimeSpend) {
+        this.availableTime = availableTime;
+        this.workStationTimeSpend = workStationTimeSpend;
+    }
+
+    public void setPos(ArrayList<Integer> pos) {
+        this.pos = pos;
+    }
+
     public void setFirstIndex(int firstIndex) {
         this.firstIndex = firstIndex;
     }
