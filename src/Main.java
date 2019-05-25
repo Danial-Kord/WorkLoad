@@ -1,5 +1,6 @@
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -8,6 +9,8 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
+
+
         ArrayList<Job> jobs = new ArrayList<Job>();
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt(); //job
@@ -250,8 +253,27 @@ public class Main {
                 System.out.printf(""+ jobs.get(j).formalInfo());
             }
         }
-//        System.out.println(workStations.get(2).timeLine.get(m).getEnd());
+        System.out.println("enter output name");
+        String name = scanner.next();
+        Verification verification = new Verification();
+        verification.write("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt",des,jobs);
 
+
+
+//        Verification verification = new Verification();
+//        System.out.println("enter input name");
+//        String namein = scanner.next();
+//        System.out.println("enter output name");
+//        String name = scanner.next();
+//        verification.write("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt",des,jobs);
+//
+//        try {
+//            verification = new Verification("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\inputs\\"+namein+".txt",
+//                    "D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt");
+//            System.out.println(verification.check());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
@@ -287,6 +309,7 @@ public class Main {
             System.out.println("LL");
 
         }
+
     }
 
     public static boolean interact(Couple c1, Couple c2) {//check collision of two couple

@@ -2,7 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bb0244e-b289-4737-8fe9-c12387e5dd4e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/inputs/input_group1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group10.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group11.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group12.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group13.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group14.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group16.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group17.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group18.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group19.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group5.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group6.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group7.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group8.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inputs/input_group9.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/talash2/Verification.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/12.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/talash2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/talash2/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Verification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Verification.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +39,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="156" column="106" selection-start-line="156" selection-start-column="106" selection-end-line="156" selection-end-column="106" />
+            <state relative-caret-position="443">
+              <caret line="275" column="11" lean-forward="true" selection-start-line="262" selection-start-column="57" selection-end-line="275" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -37,8 +60,28 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Job.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="142">
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
+              <folding>
+                <element signature="e#954#955#0" expanded="true" />
+                <element signature="e#984#985#0" expanded="true" />
+                <element signature="e#1099#1100#0" expanded="true" />
+                <element signature="e#1125#1126#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Verification.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="114" column="17" lean-forward="true" selection-start-line="114" selection-start-column="17" selection-end-line="114" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1421#1430#0" expanded="true" />
+                <element signature="e#1855#1864#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -46,7 +89,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WorkStation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="324">
               <caret line="43" selection-start-line="43" selection-end-line="43" />
             </state>
           </provider>
@@ -76,9 +119,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Job.java" />
         <option value="$PROJECT_DIR$/src/Couple.java" />
         <option value="$PROJECT_DIR$/src/WorkStation.java" />
+        <option value="$PROJECT_DIR$/src/Job.java" />
+        <option value="$PROJECT_DIR$/src/Verification.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
@@ -95,8 +139,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -113,12 +155,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558809381265" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558814835478" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -163,11 +207,20 @@
       <workItem from="1558590478277" duration="28387000" />
       <workItem from="1558780971610" duration="4550000" />
       <workItem from="1558806309144" duration="1016000" />
+      <workItem from="1558809311384" duration="5478000" />
     </task>
+    <task id="LOCAL-00001" summary="class verification added &#10;this class check that an output relate to a specific inout is correct or not">
+      <created>1558809463577</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1558809463577</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38356000" />
+    <option name="totallyTimeSpent" value="43834000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -180,9 +233,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25973153" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.26308724" />
+      <window_info id="Structure" order="1" sideWeight="0.5021097" side_tool="true" weight="0.26308724" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -215,12 +269,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="class verification added &#10;this class check that an output relate to a specific inout is correct or not" />
+    <option name="LAST_COMMIT_MESSAGE" value="class verification added &#10;this class check that an output relate to a specific inout is correct or not" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>126</line>
+          <line>129</line>
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
@@ -277,13 +335,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/WorkStation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="156" column="106" selection-start-line="156" selection-start-column="106" selection-end-line="156" selection-end-column="106" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="324">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
         </state>
       </provider>
     </entry>
@@ -296,15 +351,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Job.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="142">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="e#954#955#0" expanded="true" />
+            <element signature="e#984#985#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#1125#1126#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WorkStation.java">
+    <entry file="file://$PROJECT_DIR$/src/Verification.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        <state relative-caret-position="15">
+          <caret line="114" column="17" lean-forward="true" selection-start-line="114" selection-start-column="17" selection-end-line="114" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1421#1430#0" expanded="true" />
+            <element signature="e#1855#1864#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="275" column="11" lean-forward="true" selection-start-line="262" selection-start-column="57" selection-end-line="275" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
