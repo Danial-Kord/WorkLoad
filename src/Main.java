@@ -154,23 +154,27 @@ public class Main {
                             boolean isDrawable = true;
                             Couple map = new Couple(nullSpace.getStart(), target.getEnd() - target.getStart(), target.getjobPlaceInQueue());
                             while (map.getEnd() <= nullSpace.getEnd()) {//set the position of block for new condition
-                                for (int w = 0; w < m; w++) {
-                                    if (w == i) {
-                                        continue;
-                                    }
-                                    //brothers of what we want to move
-                                    Couple temp = new Couple(jobs.get(target.getjobPlaceInQueue()).getPos().get(w), jobs.get(target.getjobPlaceInQueue()).getWorkStationTimeSpend().get(w), target.getjobPlaceInQueue());
-                                    if (interact(map, temp)) {
+                                if(jobs.get(target.getjobPlaceInQueue()).getAvailableTime()>map.getStart()){
+                                    isDrawable=false;
+                                }else {
+                                    for (int w = 0; w < m; w++) {
+                                        if (w == i) {
+                                            continue;
+                                        }
+                                        //brothers of what we want to move
+                                        Couple temp = new Couple(jobs.get(target.getjobPlaceInQueue()).getPos().get(w), jobs.get(target.getjobPlaceInQueue()).getWorkStationTimeSpend().get(w), target.getjobPlaceInQueue());
+                                        if (interact(map, temp)) {
 //                                    System.out.printf("tadakhol");
-                                        isDrawable = false;
-                                        break;
-                                    }
+                                            isDrawable = false;
+                                            break;
+                                        }
 //                                System.out.printf("search");
 //                            while (map.getEnd()<=nullSpace.getEnd()){
 //                                if(interact(map,temp))
 //                                map.shif();
 //                            }
 
+                                    }
                                 }
                                 if (isDrawable == true) {
                                     System.out.println("//");
