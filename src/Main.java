@@ -254,27 +254,27 @@ public class Main {
                 System.out.printf(""+ jobs.get(j).formalInfo());
             }
         }
-//        System.out.println("enter output name");
-//        String name = scanner.next();
-//        Verification verification = new Verification();
-//        verification.write("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt",des,jobs);
-
-
-
-        Verification verification = new Verification();
-        System.out.println("enter input name");
-        String namein = scanner.next();
         System.out.println("enter output name");
         String name = scanner.next();
+        Verification verification = new Verification();
         verification.write("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt",des,jobs);
 
-        try {
-            verification = new Verification("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\inputs\\"+namein+".txt",
-                    "D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt");
-            System.out.println(verification.check());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//
+//
+//        Verification verification = new Verification();
+//        System.out.println("enter input name");
+//        String namein = scanner.next();
+//        System.out.println("enter output name");
+//        String name = scanner.next();
+//        verification.write("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt",des,jobs);
+//
+//        try {
+//            verification = new Verification("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\inputs\\"+namein+".txt",
+//                    "D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt");
+//            System.out.println(verification.check());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
