@@ -27,7 +27,7 @@ public class Main {
         for (int i = 0; i < n; i++) {//inputs and adding sum into workstation array
             int availableTime = scanner.nextInt();
             jobs.add(new Job(availableTime));
-
+            jobs.get(jobs.size()-1).setFirstIndex(i);
             for (int j = 0; j < m; j++) {
                 int time = scanner.nextInt();
                 workStations.get(j).setSum(workStations.get(j).getSum() + time);
@@ -232,12 +232,20 @@ public class Main {
 //        for (int i = 0; i < n; i++) {
 //            System.out.println(jobs.get(i).info());
 //        }
+
+        System.out.println("final answer \n\n-------------->>>");
         for (int i = 0; i < m; i++) {
             int temp = jobs.get(n - 1).getPos().get(jobs.get(n - 1).getPriorites().indexOf(i)) + jobs.get(n - 1).getWorkStationTimeSpend().get(jobs.get(n - 1).getPriorites().indexOf(i));
             if (temp > des)
                 des = temp;
         }
         System.out.println(des);
+        for (int i=0;i<n;i++){
+            for (int j=0;j<n;j++) {
+                if(jobs.get(j).getFirstIndex() == i)
+                System.out.printf(""+ jobs.get(j).formalInfo());
+            }
+        }
 //        System.out.println(workStations.get(2).timeLine.get(m).getEnd());
 
 

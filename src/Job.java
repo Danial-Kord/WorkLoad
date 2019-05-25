@@ -4,7 +4,8 @@ public class Job {
     private int availableTime;
     private ArrayList<Integer> pos;
     private ArrayList<Integer> priorites;
-    private ArrayList<Integer> workStationTimeSpend; // index refers to witch station and value referes to what time it tackes to do that job in that station
+    private ArrayList<Integer> workStationTimeSpend;
+    private int firstIndex;// index refers to witch station and value referes to what time it tackes to do that job in that station
 
     public Job(int availableTime) {
         this.availableTime = availableTime;
@@ -12,6 +13,15 @@ public class Job {
         priorites = new ArrayList<Integer>();
         workStationTimeSpend = new ArrayList<Integer>();
     }
+
+    public void setFirstIndex(int firstIndex) {
+        this.firstIndex = firstIndex;
+    }
+
+    public int getFirstIndex() {
+        return firstIndex;
+    }
+
     public void addPos(Integer position){
 
         pos.add(position);
@@ -51,5 +61,14 @@ public class Job {
         out+= "\n\n\n";
         return out;
 
+    }
+    public String formalInfo(){
+        String out = "";
+        out+="";
+        for (int i=0;i<pos.size();i++)
+            out+=""+pos.get(i) + " ";
+        out+="\n";
+        out+= "";
+        return out;
     }
 }
