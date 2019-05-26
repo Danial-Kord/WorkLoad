@@ -99,8 +99,10 @@ public class Verification {
                             return false;
                         }
                     }
-                    if(start == start2)
+                    if(start == start2) {
+                        System.out.println("barabari satri");
                         return false;
+                    }
                     if(start > start2){
                         if(start < end2) {
                             System.out.println("tadakhool"+i);
