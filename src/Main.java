@@ -1,5 +1,4 @@
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +8,8 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
+
+//
 
 
         ArrayList<Job> jobs = new ArrayList<Job>();
@@ -40,6 +41,21 @@ public class Main {
                 finalSum += time;
             }
         }
+
+        ArrayList<Job>jobs1 = new ArrayList<Job>();
+        jobs1.add(new Job(-1));
+        jobs1.add(new Job(-1));
+        jobs1.add(new Job(-1));
+        jobs1.add(new Job(-1));
+        jobs1.add(new Job(-1));
+        jobs1.get(0).cclone(jobs.get(0));
+        jobs1.get(1).cclone(jobs.get(1));
+        jobs1.get(2).cclone(jobs.get(2));
+        jobs1.get(3).cclone(jobs.get(3));
+        jobs1.get(2).setWorkStationTimeSpend(jobs1.get(0).getWorkStationTimeSpend());
+        System.out.println("------"+jobs1.get(2).getWorkStationTimeSpend().get(0));
+        System.out.println("------"+jobs.get(2).getWorkStationTimeSpend().get(0));
+
 
         for (int i = 0; i < n; i++) {
             for (int j = i; j < n; j++) {
@@ -92,50 +108,145 @@ public class Main {
 //                        jobs.get(i).getPos().get(preIndex) + jobs.get(i).getWorkStationTimeSpend().get(preIndex))));
 //            }
 //        }//TODO
-        FactorielMethod factorielMethod = new FactorielMethod(n,m,jobs,workStations);
         //in this section we want to creat time line to show what we have in workstation
+//        ArrayList<Job>jobst = (ArrayList<Job>) jobs.clone();
+//        ArrayList<ArrayList<Job>> jobtemp= new ArrayList<ArrayList<Job>>();
+//        ArrayList<ArrayList<WorkStation>>worktemp= new ArrayList<ArrayList<WorkStation>>();
+//        for(int i=0;i<=n;i++){
+//            jobtemp.add((ArrayList<Job>) jobst.clone());
+//            jobst.add(jobst.get(0));
+//            jobst.remove(0);
+//        }
+//
+//
+//        for (int i=0;i<jobtemp.size();i++){
+//            FactorielMethod factorielMethod = new FactorielMethod(n,m,jobtemp.get(i),workStations);
+//            factorielMethod.bestFactorielplacement();
+//            factorielMethod.kashMethod(workStations);
+//            worktemp.add(factorielMethod.getWorkStations2());
+//            System.out.println("????");
+//        }
+//        ArrayList<Job>finall = null;
+//        ArrayList<WorkStation>finallw = null;
+//        int sum2=0;
+//        for (int h=0;h<jobtemp.size();h++){
+//            int sum1=0;
+//            ArrayList<Job>temp = null;
+//        for (int i=0;i<n;i++){
+//            for (int j=0;j<m;j++){
+//                if(jobtemp.get(h).get(i).getPos().get(j)+jobtemp.get(h).get(i).getWorkStationTimeSpend().get(j) > sum1) {
+//                    sum1 = jobtemp.get(h).get(i).getPos().get(j) + jobtemp.get(h).get(i).getWorkStationTimeSpend().get(j);
+//                }
+//            }
+//        }
+//            System.out.println(sum1);
+//        if(sum2 > sum1 || sum2==0){
+//            System.out.println("................................"+sum2);
+//            finall = jobtemp.get(h);
+//            finallw = worktemp.get(h);
+//            sum2=sum1;
+//        }
+//        }
+//        jobs = finall;
+//        workStations = finallw;
+//
 
+//
+//
+ArrayList<Job>first = (ArrayList<Job>) jobs.clone();
+        int sum2=0;
+        for (int i=0;i<n;i++){
+            for (int j=0;j<m;j++){
+                if(first.get(i).getPos().get(j)+first.get(i).getWorkStationTimeSpend().get(j) > sum2) {
+                    sum2 = first.get(i).getPos().get(j) + first.get(i).getWorkStationTimeSpend().get(j);
 
-        jobs = factorielMethod.bestFactorielplacement();
-        for (int j = 0; j < n; j++) {
-            for (int k = 0; k < m; k++) {
-                Couple couple = new Couple(jobs.get(j).getPos().get(k), jobs.get(j).getWorkStationTimeSpend().get(k), j);
-                workStations.get(k).timeLine.add(couple);
+                }
             }
         }
-        for (WorkStation sourece : workStations) { //now couples sort in timeline
-            sourece.sortTimeLine();
+        int index = n;
+for (int z=0;z<m;z++) {
+    for (int v = 0; v < index; v++) {
+        for (int x = 0; x <= index; x++) {
+            ArrayList<Job> temp = new ArrayList<Job>();
+            for (int i = 0; i < jobs.size(); i++) {
+                temp.add(new Job(jobs.get(i).getAvailableTime()));
+                temp.get(temp.size() - 1).cclone(jobs.get(i));
+            }
+            FactorielMethod factorielMethod = new FactorielMethod(n, m, temp);
+            temp = factorielMethod.bestFactorielplacement();
+            temp = factorielMethod.kashMethod(temp, workStations);
+            jobs.add(0, jobs.get(n - 1));
+            jobs.remove(jobs.size() - 1);
+            int sum1 = 0;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    if (temp.get(i).getPos().get(j) + temp.get(i).getWorkStationTimeSpend().get(j) > sum1) {
+                        sum1 = temp.get(i).getPos().get(j) + temp.get(i).getWorkStationTimeSpend().get(j);
+                    }
+                }
+            }
+            if (sum1 < sum2 || sum2 == 0) {
+                index += x;
+
+                System.out.println("._.");
+                System.out.println(sum1);
+                first = temp;
+//        for (int i=0;i<jobs.size();i++){
+//            first.add(new Job(-1));
+//            first.get(temp.size()-1).cclone(jobs.get(i));
+//        }
+                workStations = factorielMethod.getWorkStations2();
+//        if(sum2!=0)
+//            break;
+                sum2 = sum1;
+            }
         }
-        System.out.println("phase 2 :\n");
+    }
+}
+        jobs= (ArrayList<Job>) first.clone();
+//        jobs = null;
+        int sum1=0;
+        for (int i=0;i<n;i++){
+            for (int j=0;j<m;j++){
+                if(jobs.get(i).getPos().get(j)+jobs.get(i).getWorkStationTimeSpend().get(j) > sum1) {
+                    sum1 = jobs.get(i).getPos().get(j) + jobs.get(i).getWorkStationTimeSpend().get(j);
+                }
+            }
+        }
+        System.out.println(sum1);
+//        FactorielMethod factorielMethod = new FactorielMethod(n,m,jobs,workStations);
+//        jobs = factorielMethod.bestFactorielplacement();
+//        jobs = factorielMethod.kashMethod(workStations);//TODO
+//        System.out.println("phase 2 :\n");
         for (int i = 0; i < n; i++) {
             System.out.println(jobs.get(i).info());
         }
-        long des = 0;
-        for (int i = 0; i < m; i++) {
-            int temp = jobs.get(n - 1).getPos().get(jobs.get(n - 1).getPriorites().indexOf(i)) + jobs.get(n - 1).getWorkStationTimeSpend().get(jobs.get(n - 1).getPriorites().indexOf(i));
-            if (temp > des)
-                des = temp;
-        }
-        System.out.println(des);
+//        long des = 0;
+//        for (int i = 0; i < m; i++) {
+//            int temp = jobs.get(n - 1).getPos().get(jobs.get(n - 1).getPriorites().indexOf(i)) + jobs.get(n - 1).getWorkStationTimeSpend().get(jobs.get(n - 1).getPriorites().indexOf(i));
+//            if (temp > des)
+//                des = temp;
+//        }
+//        System.out.println(des);
 
 
         System.out.println("phase 3");
 
 
-        System.out.println("___");
-        System.out.println("___");
-        printerTable(workStations);
+//        System.out.println("___");
+//        System.out.println("___");
+//        printerTable(workStations);
 
-        jobs = factorielMethod.kashMethod(jobs,workStations);
+//        jobs = factorielMethod.kashMethod(jobs,workStations);//TODO
 
         //this section must be done in the end of project
         System.out.println("___");
         System.out.println("___");
-        des=0;
+//        des=0;
 //        for (int i = 0; i < n; i++) {
 //            System.out.println(jobs.get(i).info());
 //        }
-
+        System.out.println(jobs.size());
         System.out.println("final answer \n\n-------------->>>");
         int max = workStations.get(0).timeLine.get(n-1).getEnd();
 
@@ -144,38 +255,49 @@ public class Main {
                 max = workStations.get(i).timeLine.get(n-1).getEnd();
             }
         }
-        System.out.println(max);
+
+        System.out.println("______________________________");
 
 
+ sum1=0;
         for (int i=0;i<n;i++){
-            for (int j=0;j<n;j++) {
-                if(jobs.get(j).getFirstIndex() == i)
-                System.out.printf(""+ jobs.get(j).formalInfo());
+            for (int j=0;j<m;j++){
+                if(jobs.get(i).getPos().get(j)+jobs.get(i).getWorkStationTimeSpend().get(j) > sum1) {
+                    sum1 = jobs.get(i).getPos().get(j) + jobs.get(i).getWorkStationTimeSpend().get(j);
+                }
             }
         }
-        printerTable(workStations);
-        System.out.println(max);
+        System.out.println(sum1);
+        for (int i=0;i<n;i++){
+            for (int j=0;j<n;j++) {
+//                if(jobs.get(j).getFirstIndex() == i)
+//                System.out.printf(""+ jobs.get(j).formalInfo());
+            }
+        }
+//        printerTable(workStations);
+//        System.out.println(max);
         System.out.println("enter output name");
         String name = scanner.next();
         Verification verification = new Verification();
-        verification.write("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt",des,jobs);
+        verification.write("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt",sum1,jobs);
 //
 
-        //check
+//        check
+//        Scanner scanner = new Scanner(System.in);
 //        Verification verification = new Verification();
-//        System.out.println("enter input name");
-//        String namein = scanner.next();
-//        System.out.println("enter output name");
-//        String name = scanner.next();
-//
-//        try {
-//            verification = new Verification("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\inputs\\"+namein+".txt",
-//                    "D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\output\\"+name+".txt");
-//            System.out.println(verification.check());
-//        } catch (IOException e) {
-//            e.printStackTrace();
+//        System.out.println("enter number test");
+////        String name = scanner.next();
+//        for (int i=1;i<19;i++) {
+//            if(i==10 || i==15)
+//                continue;
+//            try {
+//                verification = new Verification("D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\inputs\\input_group12" + ".txt",
+//                        "D:\\IdeaProjects\\projects\\WorkLoad2\\WorkLoad\\12\\output_from_"+i+"_to_12.txt");
+//                System.out.println("" + i + " "+verification.check());
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
 //        }
-
     }
 
     public static void printerTable(ArrayList<WorkStation> temp) {

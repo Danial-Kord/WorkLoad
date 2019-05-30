@@ -7,6 +7,7 @@ public class Verification {
     private ArrayList<Job> inputJobs;
     private ArrayList<Job> outputJobs;
     private String outputPath;
+    private int sum;
     public Verification(){}
     public Verification(String inputPath,String outputPath) throws IOException { // recieve the input and output path to check the out put is correct or not
         File input = new File(inputPath);
@@ -22,7 +23,6 @@ public class Verification {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         String st;
         st = inputBuffer.readLine();
         String[] temp = st.split(" ");
@@ -36,7 +36,7 @@ public class Verification {
             }
             inputJobs.add(new Job(Integer.parseInt(temp[0]),workStatonTemp));
         }
-        int sum = Integer.parseInt(outPutBuffer.readLine());
+         sum = Integer.parseInt(outPutBuffer.readLine());
         System.out.println(sum);
         while ((st = outPutBuffer.readLine()) != null){
             temp = st.split(" ");
@@ -82,6 +82,8 @@ public class Verification {
                     System.out.println(i);
                     return false;
                 }
+                if(outputJobs.get(i).getPos().get(j) + inputJobs.get(i).getWorkStationTimeSpend().get(j) > sum)
+                    return false;
                 Job cur = outputJobs.get(i);
                 int start = cur.getPos().get(j);
                 int end = start + inputJobs.get(i).getWorkStationTimeSpend().get(j);
@@ -100,7 +102,7 @@ public class Verification {
                         }
                     }
                     if(start == start2) {
-                        System.out.println("barabari satri");
+                        System.out.println("barabari satri " +start);
                         return false;
                     }
                     if(start > start2){

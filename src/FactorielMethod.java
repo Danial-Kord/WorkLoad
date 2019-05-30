@@ -6,58 +6,74 @@ public class FactorielMethod {
     private ArrayList<WorkStation>workStations;
     private int n ; //job
     private int m ;//station
-    public FactorielMethod(int n,int m,ArrayList<Job>jobs,ArrayList<WorkStation>workStations){
+    public FactorielMethod(int n,int m,ArrayList<Job>jobs){
         this.m = m;
         this.n = n;
-        this.jobs = jobs;
-        this.workStations = workStations;
+        this.jobs = (ArrayList<Job>) jobs.clone();
     }
     public ArrayList<Job> bestFactorielplacement(){
-        for (int i=0;i<n;i++){
-            best(i,jobs);
+        for (int k=0;k<n;k++) {
+            for (int i = 0; i < n; i++) {
+                best(i, jobs);
+            }
         }
         return jobs;
     }
     public Job best(int in,ArrayList<Job>jobArrayList){
 
         Job best = null;
-        ArrayList<Job>bestJ = (ArrayList<Job>) jobs.clone();
-        ArrayList<Job>bestW = (ArrayList<Job>) jobs.clone();
-        int sum = 0;
-        for (int i=0;i<6;i++) {//jaygasht haye momken
-            if(best == null) {
-                best = new Job(jobArrayList.get(in).getAvailableTime(), (ArrayList<Integer>) jobArrayList.get(in).getWorkStationTimeSpend().clone());
-                best.setPos((ArrayList<Integer>) jobArrayList.get(in).getPos().clone());
-                sum = maxFinishTime(best);
-            }
-            Job temp;
-            temp = new Job(jobArrayList.get(in).getAvailableTime(), (ArrayList<Integer>) jobArrayList.get(in).getWorkStationTimeSpend().clone());
-            temp.setPos((ArrayList<Integer>) jobArrayList.get(in).getPos().clone());
-            Job cur = jobArrayList.get(in);
-            Job pre = null;
-            if(in>0)
-                pre = jobArrayList.get(in - 1);
-            else
-            {
-                pre = new Job(0);
-                pre.setPos(new ArrayList<Integer>());
-                pre.setWorkStationTimeSpend(new ArrayList<Integer>());
-                for (int h=0;h<m;h++){
-                    pre.addTime(0);
-                    pre.addPos(0);
-                }
-            }
-            int index = cur.alpriorities.get(i).indexOf(0);
-            cur.getPos().set(index, Math.max(cur.getAvailableTime(), pre.getPos().get(index) + pre.getWorkStationTimeSpend().get(index)));
-            for (int j = 1; j < m; j++) {
-                index = cur.alpriorities.get(i).indexOf(j);
-                int preIndex = cur.alpriorities.get(i).indexOf(j - 1);
-                cur.getPos().set(index, Math.max(cur.getAvailableTime(), Math.max(pre.getPos().get(index) + pre.getWorkStationTimeSpend().get(index),
-                        jobArrayList.get(in).getPos().get(preIndex) + jobArrayList.get(in).getWorkStationTimeSpend().get(preIndex))));
+        ArrayList<Job>jobs = new ArrayList<Job>();
+        for (int i=0;i<this.jobs.size();i++){
+            jobs.add(new Job(this.jobs.get(i).getAvailableTime()));
+            jobs.get(jobs.size()-1).cclone(this.jobs.get(i));
+        }
 
-            }
-            ArrayList<Job>tempJ = (ArrayList<Job>) jobs.clone();
-            ArrayList<WorkStation>tempW = (ArrayList<WorkStation>) workStations.clone();
+//        ArrayList<Job>jobArrayList = new ArrayList<Job>();
+//        for (int i=0;i<jobArrayLists.size();i++){
+//            jobArrayList.add(new Job(jobArrayLists.get(i).getAvailableTime()));
+//            jobArrayList.get(jobArrayList.size()-1).cclone(jobArrayLists.get(i));
+//        }
+
+//        ArrayList<ArrayList<Job>> jj = new ArrayList<ArrayList<Job>>();
+//        for (int i=0;i<jobArrayList.size();i++){
+//
+//        }
+        int sum = 0;
+        for (int v=0;v<n;v++) {
+            for (int i = 0; i < 6; i++) {//jaygasht haye momken
+                if (best == null) {
+                    best = new Job(jobArrayList.get(in).getAvailableTime(), (ArrayList<Integer>) jobArrayList.get(in).getWorkStationTimeSpend().clone());
+                    best.setPos((ArrayList<Integer>) jobArrayList.get(in).getPos().clone());
+                    sum = maxFinishTime(best);
+                }
+                Job temp;
+                temp = new Job(jobArrayList.get(in).getAvailableTime(), (ArrayList<Integer>) jobArrayList.get(in).getWorkStationTimeSpend().clone());
+                temp.setPos((ArrayList<Integer>) jobArrayList.get(in).getPos().clone());
+                temp.cclone(jobArrayList.get(in));
+                Job cur = jobArrayList.get(in);
+                Job pre = null;
+                if (in > 0)
+                    pre = jobArrayList.get(in - 1);
+                else {
+                    pre = new Job(0);
+                    pre.setPos(new ArrayList<Integer>());
+                    pre.setWorkStationTimeSpend(new ArrayList<Integer>());
+                    for (int h = 0; h < m; h++) {
+                        pre.addTime(0);
+                        pre.addPos(0);
+                    }
+                }
+                int index = cur.alpriorities.get(i).indexOf(0);
+                cur.getPos().set(index, Math.max(cur.getAvailableTime(), pre.getPos().get(index) + pre.getWorkStationTimeSpend().get(index)));
+                for (int j = 1; j < m; j++) {
+                    index = cur.alpriorities.get(i).indexOf(j);
+                    int preIndex = cur.alpriorities.get(i).indexOf(j - 1);
+                    cur.getPos().set(index, Math.max(cur.getAvailableTime(), Math.max(pre.getPos().get(index) + pre.getWorkStationTimeSpend().get(index),
+                            jobArrayList.get(in).getPos().get(preIndex) + jobArrayList.get(in).getWorkStationTimeSpend().get(preIndex))));
+
+                }
+//            ArrayList<Job>tempJ = (ArrayList<Job>) jobs.clone();
+//            ArrayList<WorkStation>tempW = (ArrayList<WorkStation>) workStations.clone();
 
 //            if(in==jobs.size()-1) {
 //                tempJ =  kashMethod(tempJ,tempW);
@@ -70,17 +86,42 @@ public class FactorielMethod {
 //                    jobs = bestJ;
 //                }
 //            }
-
-             if(sum < maxFinishTime(temp)){
-                sum = maxFinishTime(temp);
-                best = temp;
+//            if(index == jobs.size()-1) {
+//                jj.add(temp);
+//            }
+//            else {
+//                for (int i = 0; i < 6; i++)
+                if (sum < maxFinishTime(temp)) {
+                    sum = maxFinishTime(temp);
+                    best = temp;
+                }
+//            }
             }
         }
         return best;
     }
-    public ArrayList<Job>kashMethod(ArrayList<Job>jobs,ArrayList<WorkStation>workStations){
+    public ArrayList<Job>kashMethod(ArrayList<Job>jobs2,ArrayList<WorkStation>workStations2){
+       workStations  =new ArrayList<WorkStation>();
+        for (int i=0;i<workStations2.size();i++){
+            workStations.add(new WorkStation(workStations2.get(i).getIndex()));
+            workStations.get(i).timeLine = new ArrayList<Couple>();
+        }
+        ArrayList<Job>jobs = new ArrayList<Job>();
+        for (int i=0;i<jobs2.size();i++){
+            jobs.add(new Job(jobs2.get(i).getAvailableTime()));
+            jobs.get(jobs.size()-1).cclone(jobs2.get(i));
+        }
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < m; k++) {
+                Couple couple = new Couple(jobs.get(j).getPos().get(k), jobs.get(j).getWorkStationTimeSpend().get(k), j);
+                workStations.get(k).timeLine.add(couple);
+            }
+        }
+        for (WorkStation sourece : workStations) { //now couples sort in timeline
+            sourece.sortTimeLine();
+        }
         //bubble remover
-        System.out.println(workStations.size());
+//        System.out.println(workStations.size());
         for (int p=0;p<n;p++) {
             for (int i = 0; i < m; i++) {//all workstation
                 int curentPivot = workStations.get(i).timeLine.get(0).getEnd();
@@ -134,17 +175,17 @@ public class FactorielMethod {
                                     }
                                 }
                                 if (isDrawable == true) {
-                                    System.out.println("//");
+//                                    System.out.println("//");
                                     jobs.get(target.getjobPlaceInQueue()).getPos().set(i, map.getStart());
 
-                                    System.out.println(" " + i + " " + target.getjobPlaceInQueue());
-
-                                    System.out.print(target.getStart() + " ");
-                                    System.out.print(target.getEnd() + " ");
-
-
-                                    System.out.print(map.getStart() + " ");
-                                    System.out.println(map.getEnd() + " ");
+//                                    System.out.println(" " + i + " " + target.getjobPlaceInQueue());
+//
+//                                    System.out.print(target.getStart() + " ");
+//                                    System.out.print(target.getEnd() + " ");
+//
+//
+//                                    System.out.print(map.getStart() + " ");
+//                                    System.out.println(map.getEnd() + " ");
 
 
                                     workStations.get(i).timeLine.remove(target);
@@ -179,8 +220,24 @@ public class FactorielMethod {
 
             }
         }
+        workStations2 = workStations;
+        int sum1=0;
+        for (int i=0;i<n;i++){
+            for (int j=0;j<m;j++){
+                if(jobs.get(i).getPos().get(j)+jobs.get(i).getWorkStationTimeSpend().get(j) > sum1) {
+                    sum1 = jobs.get(i).getPos().get(j) + jobs.get(i).getWorkStationTimeSpend().get(j);
+                }
+            }
+        }
+//        System.out.println(sum1);
+//        System.out.println("??????????");
         return jobs;
     }
+
+    public ArrayList<WorkStation> getWorkStations2() {
+        return workStations;
+    }
+
     private int maxFinishTime(Job in){
         int max = in.getPos().get(0)+in.getWorkStationTimeSpend().get(0);
         for (int i=1;i<in.getWorkStationTimeSpend().size();i++){

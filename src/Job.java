@@ -1,5 +1,5 @@
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 public class Job {
     private int availableTime;
     private ArrayList<Integer> pos;
@@ -98,5 +98,31 @@ public class Job {
         out+="\n";
         out+= "";
         return out;
+    }
+    public void cclone(Job job2){
+        pos = new ArrayList<Integer>();
+        for(int i=0;i<job2.getPos().size();i++){
+            pos.add(job2.getPos().get(i));
+        }
+
+        priorites = new ArrayList<Integer>();
+        for(int i=0;i<job2.getPriorites().size();i++){
+            priorites.add(job2.getPriorites().get(i));
+        }
+        workStationTimeSpend = new ArrayList<Integer>();
+        for(int i=0;i<job2.getWorkStationTimeSpend().size();i++){
+            workStationTimeSpend.add(job2.getWorkStationTimeSpend().get(i));
+        }
+        this.firstIndex = job2.firstIndex;
+//        alpriorities = new ArrayList<Integer>();
+
+//        for(int i=0;i<alpriorities.size();i++){
+//            alpriorities.add(new ArrayList<Integer>());
+//            for(int j=0;j<alpriorities.size();j++){
+//                alpriorities.add(job2.alpriorities.get(i).get(j));
+//            }
+//        }
+
+
     }
 }
